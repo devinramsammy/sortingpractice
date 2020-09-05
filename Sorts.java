@@ -125,10 +125,10 @@ public class Sorts {
 
 
     public static void BubbleSort (int[] array) {
-        for (int i = 0; i <array.length; i++) {
-            for (int a = 1; a < array.length; a++ ){
-                if (array[i] > array[a]) {
-                    Swap(i, a, array);
+        for (int i = 1; i <array.length; i++) {
+            for (int a = 0; a < array.length - 1; a++ ){
+                if (array[a] > array[a + 1]) {
+                    Swap(a, a + 1, array);
                 }
             }
         }
