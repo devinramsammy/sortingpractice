@@ -134,6 +134,17 @@ public class Sorts {
         }
     }
 
+    public static void InsertionSort (int[] array) {
+        int helper = 0;
+        for (int i = 1; i < array.length; i++) {
+            helper = i - 1;
+            while (helper >= 0 && array[helper + 1] < array[helper]) {
+                Swap(helper + 1, helper, array);
+                helper--;
+            }
+        }
+    }
+
 
 
     public static void main(String[] args) {
@@ -195,6 +206,26 @@ public class Sorts {
         System.out.println("Edge Case 3 Result: " + Arrays.toString(edgeCase2));
         System.out.println("\nEdge Case 4: " + Arrays.toString(edgeCase3));
         BubbleSort(edgeCase3);
+        System.out.println("Edge Case 4 Result: " + Arrays.toString(edgeCase3));
+
+        edgeCase = new int[]{0};
+        edgeCase1 = new int[]{};
+        edgeCase2 = new int[]{-23,-5,-6,-7,-231,543,0};
+        edgeCase3 = new int[]{-22,-5,-5,-5,-5,5,0};
+
+        System.out.println("----------Insertion Sort----------");
+        System.out.println("Testing Edge Cases");
+        System.out.println("\nEdge Case 1: " + Arrays.toString(edgeCase));
+        InsertionSort(edgeCase);
+        System.out.println("Edge Case 1 Result: " + Arrays.toString(edgeCase));
+        System.out.println("\nEdge Case 2: " + Arrays.toString(edgeCase1));
+        InsertionSort(edgeCase1);
+        System.out.println("Edge Case 2 Result: " + Arrays.toString(edgeCase1));
+        System.out.println("\nEdge Case 3: " + Arrays.toString(edgeCase2));
+        InsertionSort(edgeCase2);
+        System.out.println("Edge Case 3 Result: " + Arrays.toString(edgeCase2));
+        System.out.println("\nEdge Case 4: " + Arrays.toString(edgeCase3));
+        InsertionSort(edgeCase3);
         System.out.println("Edge Case 4 Result: " + Arrays.toString(edgeCase3));
 
 }
