@@ -158,6 +158,48 @@ public class Sorts {
         }
     }
 
+    public static void Heapify(int index, int length, int[] array) {
+
+        int leftNode = index * 2 + 1;
+        int rightNode = index * 2 + 2;
+        int max = index;
+
+        if (leftNode < length && array[leftNode] > array[max]) {
+            max = leftNode;
+        }
+
+        if (rightNode < length && array[rightNode] > array[max]) {
+            max = rightNode;
+        }
+
+        if (index != max) {
+            Swap(index, max, array);
+            Heapify(max, length, array);
+        }
+
+    }
+
+    public static void MaxHeap(int[] array) {
+        
+        int length = array.length;
+        for (int i = length / 2 - 1; i >= 0; i--) {
+            Heapify(i, length, array);
+        }
+
+    }
+
+    public static void HeapSort(int[] array) {
+
+        MaxHeap(array);
+
+        int length = array.length;
+        for (int i = length - 1; i > 0; i--) {
+            Swap(0, i, array);
+            Heapify(0, i, array);
+        }
+
+    }
+
 
 
     public static void main(String[] args) {
@@ -259,6 +301,26 @@ public class Sorts {
         System.out.println("Edge Case 3 Result: " + Arrays.toString(edgeCase2));
         System.out.println("\nEdge Case 4: " + Arrays.toString(edgeCase3));
         SelectionSort(edgeCase3);
+        System.out.println("Edge Case 4 Result: " + Arrays.toString(edgeCase3));
+
+        edgeCase = new int[]{0};
+        edgeCase1 = new int[]{};
+        edgeCase2 = new int[]{-23,-5,-6,-7,-231,543,0};
+        edgeCase3 = new int[]{-22,-5,-5,-5,-5,5,0};
+
+        System.out.println("----------Heap Sort----------");
+        System.out.println("Testing Edge Cases");
+        System.out.println("\nEdge Case 1: " + Arrays.toString(edgeCase));
+        HeapSort(edgeCase);
+        System.out.println("Edge Case 1 Result: " + Arrays.toString(edgeCase));
+        System.out.println("\nEdge Case 2: " + Arrays.toString(edgeCase1));
+        HeapSort(edgeCase1);
+        System.out.println("Edge Case 2 Result: " + Arrays.toString(edgeCase1));
+        System.out.println("\nEdge Case 3: " + Arrays.toString(edgeCase2));
+        HeapSort(edgeCase2);
+        System.out.println("Edge Case 3 Result: " + Arrays.toString(edgeCase2));
+        System.out.println("\nEdge Case 4: " + Arrays.toString(edgeCase3));
+        HeapSort(edgeCase3);
         System.out.println("Edge Case 4 Result: " + Arrays.toString(edgeCase3));
 
 }
