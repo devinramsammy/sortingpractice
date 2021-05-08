@@ -55,7 +55,6 @@ public class Sorts {
                 
     }
 
-
     public static void QuickSort(int[] array) {
         int start = 0; 
         int end = array.length;
@@ -144,10 +143,10 @@ public class Sorts {
             }
         }
     }
-
+    
     public static void SelectionSort (int[] array) {
         int minIndex = 0;
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length - 1; i++) {
             minIndex = i;
             for (int a = i + 1; a < array.length; a++) {
                 if (array[a] < array[minIndex]) {
@@ -200,6 +199,46 @@ public class Sorts {
 
     }
 
+    public static void PancakeSort(int[] array) {
+        PancakeSortH(array, array.length);
+    }
+
+    public static boolean PancakeCheck(int[] array, int length) {
+        for (int i = 1; i < length; i++) {
+            if (array[i-1] > array[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void PancakeReverse(int[] array, int index) {
+
+        for (int i = 0; i < Math.floor(index/2); i++) {
+            Swap(i, index - i - 1, array);
+        }
+        
+    }
+
+    public static void PancakeSortH(int[] array, int length) {
+        boolean check = PancakeCheck(array, length);
+
+        if (!check) {
+            int local_max = array[0];
+            int index = -1;
+            for (int i = 0; i < length; i++) {
+                if (array[i] > local_max) {
+                    local_max = array[i];
+                    index = i;
+                }
+            }
+            PancakeReverse(array, index + 1);
+            PancakeReverse(array, length);
+            length--;
+
+            PancakeSortH(array, length);
+        }
+    }
 
 
     public static void main(String[] args) {
@@ -321,6 +360,26 @@ public class Sorts {
         System.out.println("Edge Case 3 Result: " + Arrays.toString(edgeCase2));
         System.out.println("\nEdge Case 4: " + Arrays.toString(edgeCase3));
         HeapSort(edgeCase3);
+        System.out.println("Edge Case 4 Result: " + Arrays.toString(edgeCase3));
+        
+        edgeCase = new int[]{0};
+        edgeCase1 = new int[]{};
+        edgeCase2 = new int[]{-23,-5,-6,-7,-231,543,0};
+        edgeCase3 = new int[]{-22,-5,-5,-5,-5,5,0};
+
+        System.out.println("----------Pancake Sort----------");
+        System.out.println("Testing Edge Cases");
+        System.out.println("\nEdge Case 1: " + Arrays.toString(edgeCase));
+        PancakeSort(edgeCase);
+        System.out.println("Edge Case 1 Result: " + Arrays.toString(edgeCase));
+        System.out.println("\nEdge Case 2: " + Arrays.toString(edgeCase1));
+        PancakeSort(edgeCase1);
+        System.out.println("Edge Case 2 Result: " + Arrays.toString(edgeCase1));
+        System.out.println("\nEdge Case 3: " + Arrays.toString(edgeCase2));
+        PancakeSort(edgeCase2);
+        System.out.println("Edge Case 3 Result: " + Arrays.toString(edgeCase2));
+        System.out.println("\nEdge Case 4: " + Arrays.toString(edgeCase3));
+        PancakeSort(edgeCase3);
         System.out.println("Edge Case 4 Result: " + Arrays.toString(edgeCase3));
 
 }
